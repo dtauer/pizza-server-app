@@ -293,6 +293,10 @@ server.post("/api/contact", async function contactForm(req, res) {
   res.send({ success: "Message received" });
 });
 
+server.get("/", async function getRoot(req, res) {
+  res.send('try /api/pizzas')
+})
+
 const start = async () => {
   try {
     await server.listen({ port: PORT });
