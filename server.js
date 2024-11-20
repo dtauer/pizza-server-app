@@ -49,7 +49,7 @@ server.get("/api/pizzas", async function getPizzas(req, res) {
       name: pizza.name,
       category: pizza.category,
       description: pizza.description,
-      image: `/public/pizzas/${pizza.pizza_type_id}.webp`,
+      image: `/pizzas/${pizza.pizza_type_id}.webp`,
       sizes,
     };
   });
@@ -89,7 +89,7 @@ server.get("/api/pizza-of-the-day", async function getPizzaOfTheDay(req, res) {
     name: pizza.name,
     category: pizza.category,
     description: pizza.description,
-    image: `/public/pizzas/${pizza.id}.webp`,
+    image: `/pizzas/${pizza.id}.webp`,
     sizes: sizeObj,
   };
 
@@ -134,7 +134,7 @@ server.get("/api/order", async function getOrders(req, res) {
 
   const orderItems = orderItemsRes.map((item) =>
     Object.assign({}, item, {
-      image: `/public/pizzas/${item.pizzaTypeId}.webp`,
+      image: `/pizzas/${item.pizzaTypeId}.webp`,
       quantity: +item.quantity,
       price: +item.price,
     })
@@ -256,7 +256,7 @@ server.get("/api/past-order/:order_id", async function getPastOrder(req, res) {
 
     const formattedOrderItems = orderItems.map((item) =>
       Object.assign({}, item, {
-        image: `/public/pizzas/${item.pizzaTypeId}.webp`,
+        image: `/pizzas/${item.pizzaTypeId}.webp`,
         quantity: +item.quantity,
         price: +item.price,
       })
