@@ -21,18 +21,14 @@ const __dirname = path.dirname(__filename);
 const db = await AsyncDatabase.open("./pizza.sqlite");
 
 server.addHook('preHandler', (req, res, done) => {
-  const allowedPaths = ["/api"];
-  if (allowedPaths.includes(req.routerPath)) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST");
     res.header("Access-Control-Allow-Headers",  "*");
-  }
 
   const isPreflight = /options/i.test(req.method);
   if (isPreflight) {
     return res.send();
   }
-      
   done();
 })
 
@@ -222,7 +218,6 @@ server.post("/api/order", async function createOrder(req, res) {
 });
 
 server.get("/api/past-orders", async function getPastOrders(req, res) {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = 20;
